@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Request a private chef or catering experience from Maison Table. Tell us about your event and we'll be in touch within 48 hours." />
+  <meta property="og:title" content="Request a Booking — Maison Table" />
+  <meta property="og:description" content="Tell us about your event. We'll be in touch within 48 hours." />
+  <title>Request a Booking — Maison Table</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    /* Success state */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .success-msg.show { display: flex; }
+
+    .success-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--sage);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sage);
+      font-size: 1.2rem;
+    }
+
+    .success-msg h2 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .success-msg p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      max-width: 360px;
+      line-height: 1.8;
+    }
+
+    /* Progress dots */
+    .form-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .progress-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(196,154,108,0.25);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .progress-dot.active {
+      background: var(--caramel);
+      transform: scale(1.4);
+    }
+
+    .progress-dot.done {
+      background: var(--sage);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      Maison Table
+      <span>Private Chef &amp; Catering</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Our Table</a></li>
+      <li><a href="book.html" class="active nav-cta">Reserve</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main class="page">
+
+  <!-- Hero -->
+  <header class="booking-hero">
+    <p class="eyebrow">Get in Touch</p>
+    <h1>Request a Booking</h1>
+    <div class="divider"></div>
+    <p>
+      We respond within 48 hours. The more detail you share, the better we can design around your vision.
+    </p>
+  </header>
+
+  <!-- Form -->
+  <div class="booking-form-wrap">
+    <form class="booking-form" id="bookingForm" novalidate>
+
+      <!-- Progress -->
+      <div class="form-progress" id="formProgress">
+        <div class="progress-dot active" id="dot1"></div>
+        <div class="progress-dot"        id="dot2"></div>
+        <div class="progress-dot"        id="dot3"></div>
+        <div class="progress-dot"        id="dot4"></div>
+      </div>
+
+      <!-- 1. Contact -->
+      <p class="form-section-label">01 — Contact</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone (optional)</label>
+        <input type="text" id="phone" name="phone" placeholder="+1 (415) 000-0000" />
+      </div>
+
+      <!-- 2. Event -->
+      <p class="form-section-label">02 — The Event</p>
+
+      <div class="form-group">
+        <label for="eventDate">Preferred Date</label>
+        <input type="date" id="eventDate" name="eventDate" required />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City / Town</label>
+          <input type="text" id="city" name="city" placeholder="Mill Valley, CA" required />
+        </div>
+        <div class="form-group">
+          <label for="venue">Venue Type</label>
+          <select id="venue" name="venue">
+            <option value="" disabled selected>Select one</option>
+            <option>Private Residence</option>
+            <option>Rented Venue</option>
+            <option>Outdoor / Garden</option>
+            <option>Boat / Yacht</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="guests">Number of Guests</label>
+          <input type="number" id="guests" name="guests" placeholder="8" min="1" max="200" required />
+        </div>
+        <div class="form-group">
+          <label for="courses">Number of Courses</label>
+          <select id="courses" name="courses">
+            <option value="" disabled selected>Select one</option>
+            <option>3 Courses</option>
+            <option>5 Courses</option>
+            <option>7 Courses</option>
+            <option>Chef's Discretion</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="occasion">Purpose of Event</label>
+        <select id="occasion" name="occasion" required>
+          <option value="" disabled selected>Select one</option>
+          <option>Private Dinner</option>
+          <option>Anniversary or Celebration</option>
+          <option>Corporate Gathering</option>
+          <option>Birthday</option>
+          <option>Wedding or Rehearsal Dinner</option>
+          <option>Holiday Event</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <!-- 3. Dietary -->
+      <p class="form-section-label">03 — Dietary Needs</p>
+
+      <div class="form-group">
+        <label>Restrictions or Allergies (select all that apply)</label>
+        <div class="check-group">
+          <label class="check-item">
+            <input type="checkbox" name="dietary" value="gluten-free" />
+            <span>Gluten-Free</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="dietary" value="dairy-free" />
+            <span>Dairy-Free</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="dietary" value="vegan" />
+            <span>Vegan</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="dietary" value="vegetarian" />
+            <span>Vegetarian</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="dietary" value="nut-free" />
+            <span>Nut-Free</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="dietary" value="shellfish" />
+            <span>Shellfish Allergy</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="dietary" value="kosher" />
+            <span>Kosher</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="dietary" value="halal" />
+            <span>Halal</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dietaryNotes">Additional dietary details</label>
+        <textarea id="dietaryNotes" name="dietaryNotes" placeholder="Any specific allergies, preferences, or ingredients to avoid…"></textarea>
+      </div>
+
+      <!-- 4. Vision -->
+      <p class="form-section-label">04 — Your Vision</p>
+
+      <div class="form-group">
+        <label for="budget">Approximate Budget</label>
+        <select id="budget" name="budget">
+          <option value="" disabled selected>Select a range</option>
+          <option>Under $1,500</option>
+          <option>$1,500 – $3,000</option>
+          <option>$3,000 – $6,000</option>
+          <option>$6,000 – $10,000</option>
+          <option>$10,000+</option>
+          <option>Prefer to discuss</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="vision">Tell us about the experience you're imagining</label>
+        <textarea id="vision" name="vision" placeholder="Describe the tone, any specific dishes or cuisines, the mood you want to create — anything that helps us understand your vision…" style="min-height:120px;"></textarea>
+      </div>
+
+      <!-- Submit -->
+      <div class="form-submit">
+        <p class="form-note">
+          We'll review your request and respond within 48 hours to confirm availability and discuss next steps.
+        </p>
+        <button type="submit" class="btn btn--filled" style="width:100%; justify-content:center; text-align:center;">
+          <span>Submit Request</span>
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Success state -->
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">✓</div>
+      <h2>We've received your request.</h2>
+      <p>Thank you — we'll be in touch within 48 hours to discuss your event in detail.</p>
+      <a href="index.html" class="btn"><span>Return Home</span></a>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Maison Table</div>
+      <p class="footer-tagline">Private Chef &amp; Catering</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Our Table</a></li>
+        <li><a href="book.html">Reserve</a></li>
+      </ul>
+      <div class="footer-sage">
+        <span class="sage-dot"></span>
+        Sourced with intention. Served without compromise.
+        <span class="sage-dot"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+    document.body.style.overflow = links.classList.contains('open') ? 'hidden' : '';
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Progress dots based on focus
+  const sections = [
+    { fields: ['firstName','lastName','email','phone'], dot: 'dot1' },
+    { fields: ['eventDate','city','venue','guests','courses','occasion'], dot: 'dot2' },
+    { fields: ['dietaryNotes'], dot: 'dot3' },
+    { fields: ['budget','vision'], dot: 'dot4' },
+  ];
+
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('focus', () => {
+      sections.forEach((sec, i) => {
+        const dot = document.getElementById(sec.dot);
+        if (sec.fields.includes(el.id) || sec.fields.includes(el.name)) {
+          dot.classList.add('active');
+          dot.classList.remove('done');
+        } else if (i < sections.findIndex(s => s.fields.includes(el.id) || s.fields.includes(el.name))) {
+          dot.classList.add('done');
+          dot.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // Form submit
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('successMsg').classList.add('show');
+    window.scrollTo({ top: document.querySelector('.booking-hero').offsetTop, behavior: 'smooth' });
+  });
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 20 ? '0 2px 24px rgba(59,35,24,0.08)' : '';
+  });
+</script>
+</body>
+</html>
