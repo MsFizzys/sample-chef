@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A visual record of private dinners, curated tasting menus, and bespoke catering events by Maison Table." />
+  <meta property="og:title" content="Our Table — Maison Table Private Chef" />
+  <meta property="og:description" content="A visual record of private dinners and curated events." />
+  <title>Our Table — Maison Table</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    /* Placeholder image tiles while real photos aren't yet loaded */
+    .gallery-placeholder {
+      background: var(--linen);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 4/3;
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-placeholder.tall { aspect-ratio: 3/4; }
+    .gallery-placeholder.wide { aspect-ratio: 16/9; }
+    .gallery-placeholder.sq   { aspect-ratio: 1/1; }
+
+    .ph-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1rem;
+    }
+
+    /* Generate visual variety with CSS gradients mimicking dish tones */
+    .ph-1  { background: linear-gradient(135deg, #c49a6c22, #3b231822, #7a947840); }
+    .ph-2  { background: linear-gradient(160deg, #5c362244, #c49a6c20); }
+    .ph-3  { background: linear-gradient(110deg, #9e404020, #3b231830); }
+    .ph-4  { background: linear-gradient(150deg, #7a947830, #c49a6c25); }
+    .ph-5  { background: linear-gradient(130deg, #3b231825, #c49a6c30); }
+    .ph-6  { background: linear-gradient(170deg, #9e404018, #7a947828); }
+    .ph-7  { background: linear-gradient(120deg, #c49a6c28, #5c362230); }
+    .ph-8  { background: linear-gradient(145deg, #3b231820, #afc2a828); }
+    .ph-9  { background: linear-gradient(115deg, #7a947822, #c49a6c35); }
+    .ph-10 { background: linear-gradient(155deg, #5c362235, #9e404018); }
+    .ph-11 { background: linear-gradient(125deg, #afc2a830, #3b231825); }
+    .ph-12 { background: linear-gradient(140deg, #c49a6c30, #7a947820); }
+
+    .ph-label {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text-mid);
+      opacity: 0.7;
+      text-align: center;
+    }
+    .ph-tag {
+      font-family: var(--font-body);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-top: 0.3rem;
+    }
+
+    /* Grid item hidden state for filter */
+    .gallery-item { transition: opacity 0.35s, transform 0.35s; }
+    .gallery-item.hidden { opacity: 0; pointer-events: none; height: 0; margin: 0; overflow: hidden; }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      Maison Table
+      <span>Private Chef &amp; Catering</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html" class="active">Our Table</a></li>
+      <li><a href="book.html" class="nav-cta">Reserve</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main class="page">
+
+  <!-- Hero -->
+  <header class="gallery-hero">
+    <p class="eyebrow">A Visual Record</p>
+    <h1>Our Table</h1>
+    <div class="divider"></div>
+    <p>Every dish tells the story of an evening. Organized by occasion below.</p>
+  </header>
+
+  <!-- Filters -->
+  <div class="container">
+    <div class="gallery-filters" role="tablist" aria-label="Filter by category">
+      <button class="filter-btn active" data-filter="all"   role="tab">All</button>
+      <button class="filter-btn"        data-filter="dinner" role="tab">Private Dinners</button>
+      <button class="filter-btn"        data-filter="event"  role="tab">Events</button>
+      <button class="filter-btn"        data-filter="tasting" role="tab">Tasting Menus</button>
+      <button class="filter-btn"        data-filter="detail" role="tab">Details</button>
+    </div>
+  </div>
+
+  <!-- Gallery Grid -->
+  <section class="gallery-grid" id="galleryGrid">
+
+    <!-- Replace .gallery-placeholder divs with <img> tags once you have photography -->
+    <!-- Format: <img src="your-photo.jpg" alt="descriptive alt text"> -->
+
+    <div class="gallery-item" data-cat="dinner">
+      <div class="gallery-placeholder tall ph-1">
+        <div class="ph-inner">
+          <p class="ph-label">Seared Duck Breast</p>
+          <p class="ph-tag">Private Dinner · Marin</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Seared Duck Breast
+          <small>Private Dinner · Marin</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="tasting">
+      <div class="gallery-placeholder ph-2">
+        <div class="ph-inner">
+          <p class="ph-label">Amuse-Bouche Quartet</p>
+          <p class="ph-tag">Tasting Menu · Sausalito</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Amuse-Bouche Quartet
+          <small>Tasting Menu · Sausalito</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="event">
+      <div class="gallery-placeholder ph-3">
+        <div class="ph-inner">
+          <p class="ph-label">Table Setting</p>
+          <p class="ph-tag">Corporate Event · San Francisco</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Table Setting
+          <small>Corporate Event · San Francisco</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="tasting">
+      <div class="gallery-placeholder tall ph-4">
+        <div class="ph-inner">
+          <p class="ph-label">Hamachi Crudo</p>
+          <p class="ph-tag">Tasting Menu · Tiburon</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Hamachi Crudo
+          <small>Tasting Menu · Tiburon</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="dinner">
+      <div class="gallery-placeholder sq ph-5">
+        <div class="ph-inner">
+          <p class="ph-label">Wagyu A5 Service</p>
+          <p class="ph-tag">Private Dinner · Mill Valley</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Wagyu A5 Service
+          <small>Private Dinner · Mill Valley</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="detail">
+      <div class="gallery-placeholder ph-6">
+        <div class="ph-inner">
+          <p class="ph-label">Mise en Place</p>
+          <p class="ph-tag">Kitchen Detail</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Mise en Place
+          <small>Kitchen Detail</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="event">
+      <div class="gallery-placeholder tall ph-7">
+        <div class="ph-inner">
+          <p class="ph-label">Garden Reception</p>
+          <p class="ph-tag">Private Event · Belvedere</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Garden Reception
+          <small>Private Event · Belvedere</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="tasting">
+      <div class="gallery-placeholder ph-8">
+        <div class="ph-inner">
+          <p class="ph-label">Truffle Risotto Course</p>
+          <p class="ph-tag">Tasting Menu · Ross</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Truffle Risotto
+          <small>Tasting Menu · Ross</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="detail">
+      <div class="gallery-placeholder sq ph-9">
+        <div class="ph-inner">
+          <p class="ph-label">Herb Garnish Detail</p>
+          <p class="ph-tag">Plating</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Herb Garnish
+          <small>Plating Detail</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="dinner">
+      <div class="gallery-placeholder ph-10">
+        <div class="ph-inner">
+          <p class="ph-label">Lobster Bisque</p>
+          <p class="ph-tag">Private Dinner · Novato</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Lobster Bisque
+          <small>Private Dinner · Novato</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="event">
+      <div class="gallery-placeholder tall ph-11">
+        <div class="ph-inner">
+          <p class="ph-label">Anniversary Dinner</p>
+          <p class="ph-tag">Private Event · Kentfield</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Anniversary Dinner
+          <small>Private Event · Kentfield</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item" data-cat="detail">
+      <div class="gallery-placeholder ph-12">
+        <div class="ph-inner">
+          <p class="ph-label">Chocolate Petit Four</p>
+          <p class="ph-tag">Dessert Course</p>
+        </div>
+      </div>
+      <div class="gallery-overlay">
+        <div class="gallery-caption">
+          Chocolate Petit Four
+          <small>Dessert Course</small>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="signature section">
+    <div class="container">
+      <p class="eyebrow">Ready to discuss yours?</p>
+      <h2>Your evening, designed.</h2>
+      <a href="book.html" class="btn btn--filled"><span>Request a Booking</span></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Maison Table</div>
+      <p class="footer-tagline">Private Chef &amp; Catering</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Our Table</a></li>
+        <li><a href="book.html">Reserve</a></li>
+      </ul>
+      <div class="footer-sage">
+        <span class="sage-dot"></span>
+        Sourced with intention. Served without compromise.
+        <span class="sage-dot"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<script>
+  // Mobile nav
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+    document.body.style.overflow = links.classList.contains('open') ? 'hidden' : '';
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        if (filter === 'all' || item.dataset.cat === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // Lightbox (for real images when added)
+  const lightbox = document.getElementById('lightbox');
+  document.querySelectorAll('.gallery-item img').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightboxImg').alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 20 ? '0 2px 24px rgba(59,35,24,0.08)' : '';
+  });
+</script>
+</body>
+</html>
